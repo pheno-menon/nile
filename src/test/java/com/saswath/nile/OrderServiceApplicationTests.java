@@ -1,4 +1,4 @@
-package com.saswath.nile.order_service;
+package com.saswath.nile;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
