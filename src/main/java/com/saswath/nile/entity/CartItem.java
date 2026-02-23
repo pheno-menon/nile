@@ -18,19 +18,14 @@ public class CartItem {
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "cart_id", nullable = false)
-    private Cart cart;
-
-    @ManyToOne
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
     public CartItem() {}
 
-    public CartItem(Integer quantity, Cart cart, Product product, User user) {
+    public CartItem(Integer quantity, Product product, User user) {
         this.user = user;
         this.quantity = quantity;
-        this.cart = cart;
         this.product = product;
     }
 

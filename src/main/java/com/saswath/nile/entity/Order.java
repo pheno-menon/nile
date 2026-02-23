@@ -18,9 +18,6 @@ public class Order {
     private Long id;
 
     @Column(nullable = false)
-    private String customerName;
-
-    @Column(nullable = false)
     private BigDecimal totalAmount;
 
     @Enumerated(EnumType.STRING)
@@ -36,9 +33,8 @@ public class Order {
 
     public Order() {}
 
-    public Order(User user, String customerName, BigDecimal totalAmount, OrderStatus status) {
+    public Order(User user, BigDecimal totalAmount, OrderStatus status) {
         this.user = user;
-        this.customerName = customerName;
         this.totalAmount = totalAmount;
         this.status = status;
         this.createdAt = LocalDateTime.now();
@@ -46,10 +42,6 @@ public class Order {
 
     public Long getId() {
         return id;
-    }
-
-    public String getCustomerName() {
-        return customerName;
     }
 
     public BigDecimal getTotalAmount() {
@@ -73,8 +65,6 @@ public class Order {
     }
 
     public void setId(Long id) { this.id = id; }
-
-    public void setCustomerName(String customerName) { this.customerName = customerName; }
 
     public void setTotalAmount(BigDecimal totalAmount) { this.totalAmount = totalAmount; }
 

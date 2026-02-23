@@ -4,6 +4,7 @@ import com.saswath.nile.entity.*;
 import com.saswath.nile.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -19,6 +20,7 @@ public class OrderService {
     private final OrderItemRepository orderItemRepository;
     private final ProductRepository productRepository;
 
+    @Transactional
     public Order placeOrder(Long userId) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
@@ -29,14 +31,12 @@ public class OrderService {
             throw new RuntimeException("Cart is empty");
         }
 
+        BigDecimal totalAmount = BigDecimal.ZERO;
+
         Order order = new Order();
         order.setUser(user);
         order.setStatus(OrderStatus.CREATED);
         order.setCreatedAt(LocalDateTime.now());
-
-        BigDecimal totalAmount = BigDecimal.ZERO;
-
-        order = orderRepository.save(order);
 
         for (CartItem cartItem: cartItems) {
 
@@ -49,20 +49,21 @@ public class OrderService {
             product.setStockQuantity(product.getStockQuantity() - cartItem.getQuantity());
             productRepository.save(product);
 
-            OrderItem orderItem = new OrderItem();
-            orderItem.setOrder(order);
-            orderItem.setProduct(product);
-            orderItem.setQuantity(cartItem.getQuantity());
-            orderItem.setPrice(product.getPrice());
-
-            orderItemRepository.save(orderItem);
-
             totalAmount = totalAmount.add(product.getPrice()
                     .multiply(BigDecimal.valueOf(cartItem.getQuantity())));
         }
         order.setTotalAmount(totalAmount);
-        orderRepository.save(order);
+        order = orderRepository.save(order);
 
+        for (CartItem cartItem: cartItems) {
+            OrderItem orderItem = new OrderItem();
+            orderItem.setOrder(order);
+            orderItem.setProduct(cartItem.getProduct());
+            orderItem.setQuantity(cartItem.getQuantity());
+            orderItem.setPrice(cartItem.getProduct().getPrice());
+
+            orderItemRepository.save(orderItem);
+        }
         cartItemRepository.deleteAll(cartItems);
 
         return order;

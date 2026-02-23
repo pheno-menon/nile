@@ -1,5 +1,6 @@
 package com.saswath.nile.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.util.List;
 import java.util.ArrayList;
@@ -21,10 +22,8 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Cart cart;
-
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Order> orders = new ArrayList<>();
 
     public User() {}
@@ -47,10 +46,6 @@ public class User {
         return email;
     }
 
-    public Cart getCart() {
-        return cart;
-    }
-
     public List<Order> getOrders() {
         return orders;
     }
@@ -61,7 +56,7 @@ public class User {
 
     public void setEmail(String email) { this.email = email; }
 
-    public void setCart(Cart cart) { this.cart = cart; }
+    public void setPassword(String password) { this.password = password; }
 
     public void setOrders(List<Order> orders) { this.orders = orders; }
 }
