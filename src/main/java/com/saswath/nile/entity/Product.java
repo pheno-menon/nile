@@ -28,23 +28,19 @@ public class Product {
         this.stockQuantity = stockQuantity;
     }
 
-    public Long getId() {
-        return id;
-    }
+    public Long getId() { return id; }
 
-    public String getName() {
-        return name;
-    }
+    public String getName() { return name; }
 
-    public BigDecimal getPrice() {
-        return price;
-    }
+    public BigDecimal getPrice() { return price; }
 
-    public Integer getStockQuantity() {
-        return stockQuantity;
-    }
+    public Integer getStockQuantity() { return stockQuantity; }
 
-    public void setStockQuantity(Integer stockQuantity) {
-        this.stockQuantity = stockQuantity;
-    }
+    public void setStockQuantity(Integer stockQuantity) { this.stockQuantity = stockQuantity; }
+
+    public void setPrice(BigDecimal price) { this.price = price; }
+
+    public void setName(String name) { this.name = name; }
+
+    public void setId(Long id) { this.id = id; }
 }

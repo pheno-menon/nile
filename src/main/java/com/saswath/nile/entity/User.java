@@ -55,7 +55,13 @@ public class User {
         return orders;
     }
 
-    public void setCart(Cart cart) {
-        this.cart = cart;
-    }
+    public void setId(Long id) { this.id = id; }
+
+    public void setName(String name) { this.name = name; }
+
+    public void setEmail(String email) { this.email = email; }
+
+    public void setCart(Cart cart) { this.cart = cart; }
+
+    public void setOrders(List<Order> orders) { this.orders = orders; }
 }

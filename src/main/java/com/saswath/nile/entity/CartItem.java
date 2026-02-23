@@ -14,6 +14,10 @@ public class CartItem {
     private Integer quantity;
 
     @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    @ManyToOne
     @JoinColumn(name = "cart_id", nullable = false)
     private Cart cart;
 
@@ -21,24 +25,28 @@ public class CartItem {
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
-    public CartItem() {
-    }
+    public CartItem() {}
 
-    public CartItem(Integer quantity, Cart cart, Product product) {
+    public CartItem(Integer quantity, Cart cart, Product product, User user) {
+        this.user = user;
         this.quantity = quantity;
         this.cart = cart;
         this.product = product;
     }
 
-    public Long getId() {
-        return id;
-    }
+    public User getUser() { return user; }
 
-    public Integer getQuantity() {
-        return quantity;
-    }
+    public Long getId() { return id; }
 
-    public Product getProduct() {
-        return product;
-    }
+    public Integer getQuantity() { return quantity; }
+
+    public Product getProduct() { return product; }
+
+    public void setUser(User user) { this.user = user; }
+
+    public void setId(Long id) { this.id = id; }
+
+    public void setQuantity(Integer quantity) { this.quantity = quantity; }
+
+    public void setProduct(Product product) { this.product = product; }
 }

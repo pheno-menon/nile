@@ -53,4 +53,14 @@ public class OrderItem {
     public Product getProduct() {
         return product;
     }
+
+    public void setId(Long id) { this.id = id; }
+
+    public void setQuantity(Integer quantity) { this.quantity = quantity; }
+
+    public void setPrice(BigDecimal price) { this.price = price; }
+
+    public void setOrder(Order order) { this.order = order; }
+
+    public void setProduct(Product product) { this.product = product; }
 }

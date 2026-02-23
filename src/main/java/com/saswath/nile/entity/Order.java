@@ -68,19 +68,21 @@ public class Order {
         return user;
     }
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
-
-    public void setTotalAmount(BigDecimal totalAmount) {
-        this.totalAmount = totalAmount;
-    }
-
-    public void setStatus(OrderStatus status) {
-        this.status = status;
-    }
-
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
+
+    public void setId(Long id) { this.id = id; }
+
+    public void setCustomerName(String customerName) { this.customerName = customerName; }
+
+    public void setTotalAmount(BigDecimal totalAmount) { this.totalAmount = totalAmount; }
+
+    public void setStatus(OrderStatus status) { this.status = status; }
+
+    public void setItems(List<OrderItem> items) { this.items = items; }
+
+    public void setUser(User user) { this.user = user; }
+
+    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
 }
