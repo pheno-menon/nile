@@ -1,4 +1,4 @@
-package com.saswath.ecommerce.entity;
+package com.saswath.nile.entity;
 
 public enum OrderStatus {
     CREATED("Order has been created"),

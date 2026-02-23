@@ -1,7 +1,7 @@
-package com.saswath.ecommerce.repository;
+package com.saswath.nile.repository;
 
-import com.saswath.ecommerce.entity.Order;
-import com.saswath.ecommerce.entity.OrderStatus;
+import com.saswath.nile.entity.Order;
+import com.saswath.nile.entity.OrderStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

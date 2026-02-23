@@ -1,4 +1,4 @@
-package com.saswath.ecommerce.entity;
+package com.saswath.nile.entity;
 
 import jakarta.persistence.*;
 import java.math.BigDecimal;

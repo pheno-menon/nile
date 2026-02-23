@@ -1,11 +1,10 @@
-package com.saswath.ecommerce.entity;
+package com.saswath.nile.entity;
 
 import jakarta.persistence.*;
-import java.math.BigDecimal;
 
 @Entity
-@Table(name = "order_items")
-public class OrderItem {
+@Table(name = "cart_items")
+public class CartItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,23 +13,20 @@ public class OrderItem {
     @Column(nullable = false)
     private Integer quantity;
 
-    @Column(nullable = false)
-    private BigDecimal price;
-
     @ManyToOne
-    @JoinColumn(name = "order_id", nullable = false)
-    private Order order;
+    @JoinColumn(name = "cart_id", nullable = false)
+    private Cart cart;
 
     @ManyToOne
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
-    public OrderItem() {}
+    public CartItem() {
+    }
 
-    public OrderItem(Integer quantity, BigDecimal price, Order order, Product product) {
+    public CartItem(Integer quantity, Cart cart, Product product) {
         this.quantity = quantity;
-        this.price = price;
-        this.order = order;
+        this.cart = cart;
         this.product = product;
     }
 
@@ -40,14 +36,6 @@ public class OrderItem {
 
     public Integer getQuantity() {
         return quantity;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public Order getOrder() {
-        return order;
     }
 
     public Product getProduct() {
