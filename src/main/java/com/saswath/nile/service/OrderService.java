@@ -1,6 +1,9 @@
 package com.saswath.nile.service;
 
+import com.saswath.nile.dto.OrderItemResponse;
+import com.saswath.nile.dto.OrderResponse;
 import com.saswath.nile.entity.*;
+import com.saswath.nile.exception.ResourceNotFoundException;
 import com.saswath.nile.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,14 +24,14 @@ public class OrderService {
     private final ProductRepository productRepository;
 
     @Transactional
-    public Order placeOrder(Long userId) {
+    public OrderResponse placeOrder(Long userId) {
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
         List<CartItem> cartItems = cartItemRepository.findByUserId(userId);
 
         if (cartItems.isEmpty()) {
-            throw new RuntimeException("Cart is empty");
+            throw new ResourceNotFoundException("Cart is empty");
         }
 
         BigDecimal totalAmount = BigDecimal.ZERO;
@@ -66,6 +69,35 @@ public class OrderService {
         }
         cartItemRepository.deleteAll(cartItems);
 
-        return order;
+        Order savedOrder = orderRepository.findById(order.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Order not found after saving"));
+
+        return convertToResponse(order);
+    }
+
+    public List<OrderResponse> getUserOrders(Long userId) {
+        userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+        List<Order> orders = orderRepository.findByUser_Id(userId);
+
+        return orders.stream()
+                .map(this::convertToResponse)
+                .toList();
+    }
+
+    public OrderResponse convertToResponse(Order order) {
+        List<OrderItemResponse> items = order.getItems().stream()
+                .map(item -> new OrderItemResponse(
+                        item.getProduct().getName(),
+                        item.getQuantity(),
+                        item.getPrice()))
+                .toList();
+
+        return new OrderResponse(
+                order.getId(),
+                order.getTotalAmount(),
+                order.getStatus().name(),
+                order.getCreatedAt(),
+                items);
     }
 }

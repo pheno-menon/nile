@@ -1,6 +1,7 @@
 package com.saswath.nile.service;
 
 import com.saswath.nile.entity.Product;
+import com.saswath.nile.exception.ResourceNotFoundException;
 import com.saswath.nile.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class ProductService {
 
     public Product getProductById(Long id) {
         return productRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Product not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
     }
 
     public List<Product> getAllProducts() {

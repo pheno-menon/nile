@@ -3,6 +3,7 @@ package com.saswath.nile.service;
 import com.saswath.nile.entity.CartItem;
 import com.saswath.nile.entity.Product;
 import com.saswath.nile.entity.User;
+import com.saswath.nile.exception.ResourceNotFoundException;
 import com.saswath.nile.repository.CartItemRepository;
 import com.saswath.nile.repository.ProductRepository;
 import com.saswath.nile.repository.UserRepository;
@@ -22,10 +23,10 @@ public class CartService {
     public CartItem addToCart(Long userId, Long productId, Integer quantity) {
 
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
         Product product = productRepository.findById(productId)
-                .orElseThrow(() -> new RuntimeException("Product not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
 
         if (product.getStockQuantity() < quantity) {
             throw new RuntimeException("Insufficient stock for " + product.getName());

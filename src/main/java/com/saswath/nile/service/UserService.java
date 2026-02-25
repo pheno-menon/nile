@@ -1,6 +1,7 @@
 package com.saswath.nile.service;
 
 import com.saswath.nile.entity.User;
+import com.saswath.nile.exception.ResourceNotFoundException;
 import com.saswath.nile.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,6 @@ public class UserService {
 
     public User getUserById(Long id) {
         return userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
     }
 }
