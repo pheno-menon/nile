@@ -1,17 +1,54 @@
 ## Nile
 
-A full-featured e-commerce backend built using Spring Boot, JPA, and MySQL.
-
+Nile is a Spring Boot based e-commerce backend application that provides authentication, user management, product management, cart, and order APIs.
 This project demonstrates real-world backend architecture including:
 
-- User management
-- Product catalog
-- Shopping cart system
+- User registration and login (JWT authentication)
+- Role based authorization
 - Order processing
-- Payment simulation
 - Inventory handling
 - Relational database modeling
-- Transaction management
+- Secure REST APIs
+
+# Running the application
+
+1. Run with docker:
+
+Either create a `.env` file in the same directory as `docker-compose.yaml` which contains
+```
+JWT_SECRET=supersecretandsecurejwtsecurtykeywhichisatleast32characterslong
+```
+
+Or pass it as an environment variable in your current shell
+
+Build and start containers:
+```
+docker compose down -v
+docker compose build --no-cache
+docker compose up
+```
+
+Services start at http://localhost:8080
+MySQL runs in port 3306
+
+2. Run locally with maven:
+
+Make sure MySQL is running on port 3306 with the following parameters:
+```
+database: nile
+username: root
+password: root
+```
+
+Then export JWT_SECRET in your current shell and run the following commands:
+```
+mvn clean package
+mvn spring-boot:run
+```
+
+The app runs at http://localhost:8080
+
+After registering as a user, you will receive a JWT token during subsequent logins. Use it to access protected endpoints
 
 ---
 
@@ -21,23 +58,24 @@ This is a monolithic Spring Boot application structured using layered architectu
 
 Controller -> Service -> Repository -> Database
 
+# Tech Stack
+
+- Java 17
+- Spring Boot
+- Spring Data JPA
+- Spring Security + JWT
+- Hibernate
+- MySQL 8
+- Flyway (if enabled)
+- Docker and Docker Compose
+- Maven
+
 # Core Modules
 
 - User Domain
 - Product Domain
 - Cart System
 - Order Processing
-- Payment Handling
-
-# Tech Stack
-
-- Java 17
-- Spring Boot
-- Spring Data JPA
-- Hibernate
-- MySQL 8
-- Docker
-- Maven
 
 ---
 
@@ -46,8 +84,7 @@ Controller -> Service -> Repository -> Database
 1. Project setup - Done
 2. Core domain modeling - Done
 3. User & Cart system - Done
-4. Service layer implementation
-5. REST APIs
-6. Payment processing simulation
-7. Flyway migrations
-8. Dockerized application
+4. Service layer implementation - Done
+5. REST APIs - Done
+6. Flyway migrations - Done
+7. Dockerized application - Done
