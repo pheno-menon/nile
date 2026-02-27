@@ -1,5 +1,7 @@
 ## Nile
 
+![Nile Dark Mode UI](assets/NileUI_DarkMode.png)
+
 Nile is a Spring Boot based e-commerce backend application that provides authentication, user management, product management, cart, and order APIs.
 This project demonstrates real-world backend architecture including:
 
@@ -9,6 +11,8 @@ This project demonstrates real-world backend architecture including:
 - Inventory handling
 - Relational database modeling
 - Secure REST APIs
+
+The Front-end is being worked on
 
 # Running the application
 
@@ -88,3 +92,4 @@ Controller -> Service -> Repository -> Database
 5. REST APIs - Done
 6. Flyway migrations - Done
 7. Dockerized application - Done
+8. Front-end implementation
