@@ -45,29 +45,29 @@ export default function Register() {
 
         <input
           placeholder="Name"
-          className="w-full border px-3 py-2"
+          className="w-full border px-3 py-2 outline-none focus:outline-offset-0 focus:outline-yellow-300 dark:text-black dark:outline-offset-2"
           onChange={(e) => setName(e.target.value)}
         />
 
         <input
           placeholder="Email"
-          className="w-full border px-3 py-2"
+          className="w-full border px-3 py-2 outline-none focus:outline-offset-0 focus:outline-yellow-300 dark:text-black dark:outline-offset-2"
           onChange={(e) => setEmail(e.target.value)}
         />
 
         <input
           placeholder="Password"
           type="password"
-          className="w-full border px-3 py-2"
+          className="w-full border px-3 py-2 outline-none focus:outline-offset-0 focus:outline-yellow-300 dark:text-black dark:outline-offset-2"
           onChange={(e) => setPassword(e.target.value)}
         />
 
         <button
           onClick={handle}
           className="w-full border px-3 py-2 
-          hover:bg-black hover:text-white
+          hover:bg-yellow-400 hover:text-black
           dark:bg-black dark:border-white dark:text-white
-          dark:hover:bg-white dark:hover:text-black
+          dark:hover:bg-yellow-400 dark:hover:text-black
           transition-all duration-200"
         >
           Register
@@ -75,9 +75,9 @@ export default function Register() {
         <button
           onClick={() => nav("/")}
           className="w-full border px-3 py-2
-          hover:bg-black hover:text-white
+          hover:bg-yellow-400 hover:text-black
           dark:bg-black dark:border-white dark:text-white
-          dark:hover:bg-white dark:hover:text-black
+          dark:hover:bg-yellow-400 dark:hover:text-black
           transition-all duration-200"
         >
           Home
