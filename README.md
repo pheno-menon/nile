@@ -1,6 +1,6 @@
 ## Nile
 
-![Nile Dark Mode UI](assets/NileUI_DarkMode.png)
+![Landing Page in dark mode](assets/NileUI_LandingPage.png)
 
 Nile is a Spring Boot based e-commerce backend application that provides authentication, user management, product management, cart, and order APIs.
 This project demonstrates real-world backend architecture including:
@@ -13,6 +13,18 @@ This project demonstrates real-world backend architecture including:
 - Secure REST APIs
 
 The Front-end is being worked on
+
+User registration page:
+
+![User registration page in dark mode](assets/NileUI_RegistrationPage.png)
+
+Login page:
+
+![Login page in dark mode](assets/NileUI_LoginPage.png)
+
+User dashboard:
+
+![User dashboard page in dark mode](assets/NileUI_UserDashboard.png) 
 
 # Running the application
 
