@@ -35,22 +35,31 @@ export default function Orders() {
     setExpanded((prev) => (prev === id ? null : id));
   };
 
+  const parseDate = (dateVal: string | number[]): Date | null => {
+    if (!dateVal) return null;
+    const date = Array.isArray(dateVal) 
+    ? new Date(dateVal[0], dateVal[1] - 1, dateVal[2], dateVal[3] ?? 0, dateVal[4] ?? 0)
+    : new Date(dateVal);
+    return isNaN(date.getTime()) ? null : date;
+  };
+
   // Spring's LocalDateTime serialises as either an ISO string or a [y,m,d,h,min,s] array
   const formatDate = (dateVal: string | number[]) => {
-    if (!dateVal) return "—";
-    let date: Date;
-    if (Array.isArray(dateVal)) {
-      date = new Date(dateVal[0], dateVal[1] - 1, dateVal[2]);
-    } else {
-      date = new Date(dateVal);
-    }
-    if (isNaN(date.getTime())) return "—";
+    const date = parseDate(dateVal);
+    if (!date) return "-";
     return date.toLocaleDateString(undefined, {
       year: "numeric",
       month: "short",
-      day: "numeric",
-      hour: "numeric",
-      minute: "numeric"
+      day: "numeric"
+    });
+  };
+
+  const formatTime = (dateVal: string | number[]) => {
+    const date = parseDate(dateVal);
+    if (!date) return "-";
+    return date.toLocaleTimeString(undefined, {
+      hour: "2-digit",
+      minute: "2-digit"
     });
   };
 
@@ -119,6 +128,12 @@ export default function Orders() {
                         Ordered On
                       </p>
                       <p className="text-sm">{formatDate(order.orderDate)}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">
+                        Time
+                      </p>
+                      <p className="text-sm">{formatTime(order.orderDate)}</p>
                     </div>
                   </div>
                   <span className="text-lg select-none">

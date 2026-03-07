@@ -28,6 +28,13 @@ services:
       SPRING_DATASOURCE_PASSWORD: root
     ports:
       - "8080:8080"
+  frontend:
+    build: ./nile-frontend
+    container_name: nile-frontend
+    depends_on:
+      - app
+    ports:
+      - "80:80"
 
 volumes:
   mysql_data:

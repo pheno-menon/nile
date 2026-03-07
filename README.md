@@ -26,6 +26,22 @@ User dashboard:
 
 ![User dashboard page in dark mode](assets/NileUI_UserDashboard.png) 
 
+Products page:
+
+![Products page in dark mode](assets/NileUI_ProductsPage.png)
+
+User cart:
+
+![User cart in dark mode](assets/NileUI_CartPage.png)
+
+User order history:
+
+![Orders page in dark mode](assets/NileUI_OrdersPage.png)
+
+Admin panel:
+
+![Admin panel in dark mode](assets/NileUI_AdminPanel.png)
+
 # Running the application
 
 1. Run with docker:
@@ -44,6 +60,7 @@ docker compose build --no-cache
 docker compose up
 ```
 
+The frontend runs at http://localhost
 Services start at http://localhost:8080
 MySQL runs in port 3306
 
@@ -104,4 +121,4 @@ Controller -> Service -> Repository -> Database
 5. REST APIs - Done
 6. Flyway migrations - Done
 7. Dockerized application - Done
-8. Front-end implementation
+8. Front-end implementation - Done
