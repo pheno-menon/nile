@@ -1,5 +1,8 @@
 package com.saswath.nile.auth;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 public class RegisterRequest {
 
     private String name;

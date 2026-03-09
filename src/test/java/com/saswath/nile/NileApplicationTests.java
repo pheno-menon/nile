@@ -6,7 +6,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 @SpringBootTest
 @ActiveProfiles("test")
-class OrderServiceApplicationTests {
+class NileApplicationTests {
 
 	@Test
 	void contextLoads() {

@@ -1,7 +1,9 @@
 package com.saswath.nile.auth;
 
 import com.saswath.nile.entity.User;
+import lombok.AllArgsConstructor;
 
+@AllArgsConstructor
 public class AuthResponse {
 
     private String token;
