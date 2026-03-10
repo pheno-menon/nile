@@ -62,7 +62,6 @@ class OrderServiceTest {
         when(userRepository.findById(1L)).thenReturn(Optional.of(user));
         when(cartItemRepository.findByUserId(1L)).thenReturn(List.of(cartItem));
         when(orderRepository.save(any(Order.class))).thenReturn(savedOrder);
-        when(orderRepository.findById(any())).thenReturn(Optional.of(savedOrder));
         when(productRepository.save(any(Product.class))).thenReturn(product);
         when(orderItemRepository.save(any(OrderItem.class))).thenAnswer(i -> i.getArgument(0));
 
@@ -124,7 +123,6 @@ class OrderServiceTest {
         when(userRepository.findById(1L)).thenReturn(Optional.of(user));
         when(cartItemRepository.findByUserId(1L)).thenReturn(List.of(cartItem, item2));
         when(orderRepository.save(any(Order.class))).thenReturn(savedOrder);
-        when(orderRepository.findById(any())).thenReturn(Optional.of(savedOrder));
         when(productRepository.save(any(Product.class))).thenAnswer(i -> i.getArgument(0));
         when(orderItemRepository.save(any(OrderItem.class))).thenAnswer(i -> i.getArgument(0));
 

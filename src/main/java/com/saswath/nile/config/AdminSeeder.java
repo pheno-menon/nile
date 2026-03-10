@@ -26,5 +26,15 @@ public class AdminSeeder implements ApplicationRunner {
             userRepository.save(admin);
             System.out.println("Admin user seeded.");
         }
+
+        if (userRepository.findByEmail("e2e.admin@nile.com").isEmpty()) {
+            User testAdmin = new User();
+            testAdmin.setName("E2E Admin");
+            testAdmin.setEmail("e2e.admin@nile.com");
+            testAdmin.setPassword(passwordEncoder.encode("E2eAdminPass1!"));
+            testAdmin.setRole("ROLE_ADMIN");
+            userRepository.save(testAdmin);
+            System.out.println("Test admin user seeded");
+        }
     }
 }

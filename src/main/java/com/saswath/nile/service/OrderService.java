@@ -66,11 +66,9 @@ public class OrderService {
             orderItem.setPrice(cartItem.getProduct().getPrice());
 
             orderItemRepository.save(orderItem);
+            order.getItems().add(orderItem);
         }
         cartItemRepository.deleteAll(cartItems);
-
-        Order savedOrder = orderRepository.findById(order.getId())
-                .orElseThrow(() -> new ResourceNotFoundException("Order not found after saving"));
 
         return convertToResponse(order);
     }
